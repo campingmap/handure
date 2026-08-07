@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한두레 사랑방 · 공지사항 | 너와두리 캠핑장</title>
+  <meta name="description" content="너와두리 캠핑장과 한두레마을의 소식과 공지사항을 전해드립니다." />
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="assets/tailwind.config.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="noise bg-white text-stone-700 font-sans antialiased selection:bg-leaf-200/60 selection:text-leaf-900 min-h-[100dvh]">
+
+  <!-- ================= BACKGROUND ================= -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-white"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(120% 80% at 50% -10%, rgba(130,196,82,0.12), transparent 55%), radial-gradient(70% 55% at 90% 108%, rgba(253,151,56,0.08), transparent 55%);"></div>
+    <div class="orb-a absolute -top-24 -left-24 h-[32rem] w-[32rem] rounded-full blur-[120px]" style="background:radial-gradient(circle, rgba(130,196,82,0.16), transparent 70%);"></div>
+    <div class="orb-b absolute top-1/3 -right-32 h-[34rem] w-[34rem] rounded-full blur-[130px]" style="background:radial-gradient(circle, rgba(253,151,56,0.10), transparent 70%);"></div>
+  </div>
+
+  <!-- ================= NAV =================
+       ※ 메뉴는 4개 페이지가 똑같은 내용을 가지고 있습니다.
+          메뉴를 고칠 때는 index / village / camping / notice
+          네 파일을 함께 수정해 주세요. -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto mt-4 w-[min(94%,76rem)]">
+      <nav class="u-ease flex items-center justify-between rounded-full border border-leaf-600/12 bg-white/80 px-4 py-2.5 pl-5 backdrop-blur-xl shadow-[0_8px_40px_-16px_rgba(43,71,28,0.3)]">
+
+        <a href="index.html" class="group flex items-center gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-[0.85rem] bg-leaf-500 text-white u-ease group-hover:scale-[1.04]">
+            <iconify-icon icon="ph:leaf-fill" class="text-[22px]"></iconify-icon>
+          </span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-[13.5px] font-semibold tracking-tight text-leaf-800">너와두리 캠핑장</span>
+            <span class="text-[12px] font-bold tracking-tight text-persimmon-700">옥천 한두레마을</span>
+          </span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-1 text-[14px] text-stone-600">
+          <a href="index.html" class="nav-link u-ease rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">홈</a>
+
+          <div class="nav-item relative">
+            <a href="village.html" class="nav-link u-ease flex items-center gap-1 rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">
+              한두레마을 <iconify-icon icon="solar:alt-arrow-down-linear" class="text-[15px] opacity-60"></iconify-icon>
+            </a>
+            <div class="nav-panel absolute left-1/2 top-full z-10 w-52 pt-3">
+              <div class="rounded-2xl border border-leaf-600/12 bg-white p-2 shadow-softlg">
+                <a href="village.html#about" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:home-smile-linear" class="text-leaf-500"></iconify-icon>한두레마을 소개</a>
+                <a href="village.html#greeting" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:chat-round-line-linear" class="text-leaf-500"></iconify-icon>인사말</a>
+                <a href="village.html#brand" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:leaf-light" class="text-leaf-500"></iconify-icon>너와두리</a>
+                <a href="village.html#location" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:map-point-linear" class="text-leaf-500"></iconify-icon>오시는 길</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-item relative">
+            <a href="camping.html" class="nav-link u-ease flex items-center gap-1 rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">
+              너와두리 캠핑장 &amp; 숙소 <iconify-icon icon="solar:alt-arrow-down-linear" class="text-[15px] opacity-60"></iconify-icon>
+            </a>
+            <div class="nav-panel absolute left-1/2 top-full z-10 w-52 pt-3">
+              <div class="rounded-2xl border border-leaf-600/12 bg-white p-2 shadow-softlg">
+                <a href="camping.html#camping" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:tent-light" class="text-leaf-500"></iconify-icon>오토캠핑</a>
+                <a href="camping.html#stay" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:van-light" class="text-leaf-500"></iconify-icon>카라반 &amp; 숙박 시설</a>
+                <a href="camping.html#facility" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:shower-linear" class="text-leaf-500"></iconify-icon>편의시설</a>
+                <a href="camping.html#extra" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:confetti-minimalistic-linear" class="text-leaf-500"></iconify-icon>부대시설</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="notice.html" class="nav-link is-active u-ease rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800" aria-current="page">한두레 사랑방</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="tel:01023097620" class="u-ease group hidden sm:inline-flex items-center gap-2 rounded-full bg-leaf-600 pl-5 pr-2 py-2 text-[13.5px] font-semibold text-white hover:scale-[1.02] active:scale-[0.98] hover:bg-leaf-500 shadow-[0_10px_24px_-10px_rgba(79,138,38,0.7)]">
+            예약 문의
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-persimmon-400 text-white">
+              <iconify-icon icon="solar:phone-calling-linear" class="u-ease group-hover:translate-x-0.5"></iconify-icon>
+            </span>
+          </a>
+          <button id="menuBtn" class="lg:hidden grid h-10 w-10 place-items-center rounded-full border border-leaf-600/15 bg-white text-leaf-800 u-ease hover:bg-leaf-50" aria-label="메뉴 열기">
+            <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 모바일 메뉴 -->
+  <div id="mobileMenu" class="fixed inset-0 z-[55] hidden">
+    <div class="absolute inset-0 bg-cream-50/95 backdrop-blur-2xl"></div>
+    <div class="no-bar relative flex h-[100dvh] flex-col gap-1 overflow-y-auto px-8 py-24">
+      <button id="menuClose" class="absolute right-6 top-7 grid h-11 w-11 place-items-center rounded-full border border-leaf-600/15 bg-white text-leaf-800" aria-label="메뉴 닫기">
+        <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+      </button>
+
+      <p class="mb-6 flex items-center gap-3">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-leaf-500 text-white"><iconify-icon icon="ph:leaf-fill" class="text-2xl"></iconify-icon></span>
+        <span class="flex flex-col leading-tight">
+          <span class="text-[15px] font-bold text-leaf-800">너와두리 캠핑장</span>
+          <span class="text-[12.5px] font-bold text-persimmon-700">옥천 한두레마을</span>
+        </span>
+      </p>
+
+      <a href="index.html" class="mob-link u-ease py-2.5 text-[21px] font-extrabold text-leaf-800">홈</a>
+
+      <p class="mt-6 text-[12px] font-bold uppercase tracking-[0.14em] text-stone-400">한두레마을</p>
+      <a href="village.html#about" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">한두레마을 소개</a>
+      <a href="village.html#greeting" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">인사말</a>
+      <a href="village.html#brand" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">너와두리</a>
+      <a href="village.html#location" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">오시는 길</a>
+
+      <p class="mt-7 text-[12px] font-bold uppercase tracking-[0.14em] text-stone-400">너와두리 캠핑장 &amp; 숙소</p>
+      <a href="camping.html#camping" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">오토캠핑</a>
+      <a href="camping.html#stay" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">카라반 &amp; 숙박 시설</a>
+      <a href="camping.html#facility" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">편의시설</a>
+      <a href="camping.html#extra" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">부대시설</a>
+
+      <p class="mt-7 text-[12px] font-bold uppercase tracking-[0.14em] text-persimmon-600">한두레 사랑방</p>
+      <a href="#board" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">공지사항</a>
+
+      <a href="tel:01023097620" class="mob-link u-ease mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-leaf-600 px-7 py-4 text-[17px] font-semibold text-white">
+        <iconify-icon icon="solar:phone-calling-linear"></iconify-icon> 010-2309-7620 예약문의
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= 페이지 머리 ================= -->
+  <section class="px-5 pt-32 pb-8 sm:pt-36">
+    <div class="mx-auto w-[min(94%,76rem)]">
+      <nav aria-label="현재 위치" class="flex items-center gap-2 text-[13px] text-stone-400">
+        <a href="index.html" class="u-ease hover:text-leaf-700">홈</a>
+        <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+        <span class="font-semibold text-leaf-700">한두레 사랑방</span>
+      </nav>
+      <h1 class="mt-4 text-5xl font-extrabold leading-[1.05] tracking-tightest text-leaf-900 sm:text-6xl">공지사항</h1>
+      <p class="mt-5 max-w-2xl text-[16.5px] leading-snug text-stone-600">
+        너와두리의 소식과 안내를 전해드립니다.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <section id="board" class="px-5 pb-24 pt-6 md:pb-28">
+      <div class="mx-auto w-[min(94%,76rem)]">
+
+        <div class="flex flex-wrap items-center justify-end gap-2.5">
+          <div class="relative">
+            <input id="noticeSearch" type="search" placeholder="제목 · 내용 검색" class="w-full rounded-full border-leaf-600/20 bg-white py-3 pl-11 pr-4 text-[14px] text-stone-700 placeholder:text-stone-400 focus:border-leaf-500 focus:ring-leaf-500 sm:w-64" />
+            <iconify-icon icon="solar:magnifer-linear" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[18px] text-stone-400"></iconify-icon>
+          </div>
+          <button type="button" id="adminBtn" class="inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-5 py-3 text-[14px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:shadow-soft">
+            <iconify-icon icon="solar:lock-keyhole-minimalistic-linear" class="text-persimmon-500"></iconify-icon>
+            <span id="adminBtnLabel">관리자</span>
+          </button>
+        </div>
+
+        <!-- 관리자 도구 모음 -->
+        <div id="adminBar" class="mt-6 hidden rounded-[1.5rem] border border-persimmon-300/50 bg-persimmon-50 p-4 sm:p-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <p class="flex items-center gap-2 text-[14px] font-bold text-persimmon-800">
+              <iconify-icon icon="solar:shield-user-bold" class="text-lg"></iconify-icon>
+              관리자 모드 — 글쓰기 · 수정 · 삭제를 할 수 있습니다
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" id="newPostBtn" class="inline-flex items-center gap-2 rounded-full bg-leaf-600 px-5 py-2.5 text-[14px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">
+                <iconify-icon icon="solar:pen-new-square-linear"></iconify-icon> 글쓰기
+              </button>
+              <button type="button" id="exportBtn" class="inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-5 py-2.5 text-[14px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50">
+                <iconify-icon icon="solar:download-minimalistic-linear"></iconify-icon> 백업 내려받기
+              </button>
+              <button type="button" id="logoutBtn" class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-[14px] font-medium text-stone-600 u-ease hover:border-stone-400">
+                <iconify-icon icon="solar:logout-2-linear"></iconify-icon> 로그아웃
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 목록 -->
+        <div class="mt-6 overflow-hidden rounded-[2rem] border border-leaf-600/12 bg-white p-1.5 shadow-softlg">
+          <div class="rounded-[calc(2rem-0.375rem)]">
+
+            <!-- 데스크톱 표 -->
+            <div class="hidden sm:block">
+              <table class="w-full text-[14.5px]">
+                <thead>
+                  <tr class="bg-leaf-50 text-leaf-800">
+                    <th class="w-20 px-4 py-4 text-center font-bold">번호</th>
+                    <th class="px-4 py-4 text-left font-bold">제목</th>
+                    <th class="w-28 px-4 py-4 text-center font-bold">작성자</th>
+                    <th class="w-32 px-4 py-4 text-center font-bold">등록일</th>
+                    <th class="w-24 px-4 py-4 text-center font-bold" id="thAdmin" hidden>관리</th>
+                  </tr>
+                </thead>
+                <tbody id="noticeBody"></tbody>
+              </table>
+            </div>
+
+            <!-- 모바일 카드 -->
+            <ul id="noticeCards" class="divide-y divide-leaf-600/10 sm:hidden"></ul>
+
+            <div id="noticeEmpty" class="hidden px-6 py-16 text-center">
+              <iconify-icon icon="solar:file-text-linear" class="text-4xl text-stone-300"></iconify-icon>
+              <p class="mt-3 text-[15px] text-stone-500">등록된 게시물이 없습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div id="pager" class="mt-8 flex items-center justify-center gap-1.5"></div>
+
+        <div class="mt-14 flex flex-wrap justify-center gap-3">
+          <a href="camping.html" class="group inline-flex items-center gap-2.5 rounded-full bg-leaf-600 pl-6 pr-2.5 py-3.5 text-[15px] font-semibold text-white u-ease hover:scale-[1.02] active:scale-[0.98] hover:bg-leaf-500 shadow-[0_16px_36px_-14px_rgba(79,138,38,0.7)]">
+            캠핑장 &amp; 숙소 보기
+            <span class="grid h-8 w-8 place-items-center rounded-full bg-persimmon-400 text-white"><iconify-icon icon="solar:arrow-right-linear" class="u-ease group-hover:translate-x-0.5"></iconify-icon></span>
+          </a>
+          <a href="tel:01023097620" class="inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-6 py-3.5 text-[15px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:shadow-soft">
+            <iconify-icon icon="solar:phone-calling-linear" class="text-persimmon-500"></iconify-icon> 예약문의 010-2309-7620
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-leaf-600/12 bg-white px-5 pb-12 pt-16">
+    <div class="mx-auto w-[min(94%,76rem)]">
+      <div class="flex flex-col justify-between gap-10 md:flex-row">
+        <div class="max-w-sm">
+          <a href="index.html" class="flex items-center gap-3">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-[0.85rem] bg-leaf-500 text-white"><iconify-icon icon="ph:leaf-fill" class="text-[22px]"></iconify-icon></span>
+            <span class="flex flex-col leading-tight">
+              <span class="text-[14px] font-semibold text-leaf-800">너와두리 캠핑장</span>
+              <span class="text-[12px] font-bold text-persimmon-700">옥천 한두레마을</span>
+            </span>
+          </a>
+          <p class="mt-4 text-[14px] leading-snug text-stone-500">
+            함께해서 정겨운 그 곳, 함께해서 행복한 마을.<br />
+            한두레영농조합법인이 직접 운영합니다.
+          </p>
+          <a href="mailto:handure123@hanmail.net" class="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-leaf-700 u-ease hover:text-persimmon-700">
+            <iconify-icon icon="solar:letter-bold" class="text-persimmon-500"></iconify-icon>handure123@hanmail.net
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-10 sm:grid-cols-3">
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">한두레마을</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="village.html#about" class="u-ease hover:text-persimmon-700">한두레마을 소개</a></li>
+              <li><a href="village.html#greeting" class="u-ease hover:text-persimmon-700">인사말</a></li>
+              <li><a href="village.html#brand" class="u-ease hover:text-persimmon-700">너와두리</a></li>
+              <li><a href="village.html#location" class="u-ease hover:text-persimmon-700">오시는 길</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">캠핑장 &amp; 숙소</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="camping.html#camping" class="u-ease hover:text-persimmon-700">오토캠핑</a></li>
+              <li><a href="camping.html#stay" class="u-ease hover:text-persimmon-700">카라반 &amp; 숙박</a></li>
+              <li><a href="camping.html#facility" class="u-ease hover:text-persimmon-700">편의시설</a></li>
+              <li><a href="camping.html#extra" class="u-ease hover:text-persimmon-700">부대시설</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">이용 안내</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="notice.html" class="u-ease hover:text-persimmon-700">한두레 사랑방</a></li>
+              <li><a href="tel:01023097620" class="u-ease hover:text-persimmon-700">예약문의 010-2309-7620</a></li>
+              <li><a href="tel:0437337620" class="u-ease hover:text-persimmon-700">사무실 043-733-7620</a></li>
+              <li>근무시간 09:00 ~ 18:00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 border-t border-leaf-600/12 pt-7 text-[13px] leading-relaxed text-stone-400">
+        <p>
+          상호 : 한두레영농조합법인 &nbsp;|&nbsp; 대표자 : 이기수 &nbsp;|&nbsp; 개인정보 담당자 : 정혜원<br />
+          주소 : 충청북도 옥천군 청성면 한두레로 387 &nbsp;|&nbsp; 전화 : 043-733-7620 &nbsp;|&nbsp; E-mail : handure123@hanmail.net<br />
+          사업자등록번호 : 302-81-19253 &nbsp;|&nbsp; 통신판매업신고번호 : 제 2009-충북옥천-10호
+        </p>
+        <p class="mt-4">© <span id="year">2026</span> 한두레영농조합법인. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= 게시글 보기 ================= -->
+  <dialog id="viewDlg" class="w-[min(94vw,44rem)] rounded-[2rem] border border-leaf-600/12 bg-white p-0 shadow-softlg backdrop:bg-leaf-900/55">
+    <div class="max-h-[85vh] overflow-y-auto p-7 sm:p-9">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <span id="viewBadge" class="inline-flex items-center gap-1.5 rounded-full bg-persimmon-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-persimmon-700">공지</span>
+          <h3 id="viewTitle" class="mt-3 text-2xl font-extrabold leading-snug text-leaf-900"></h3>
+          <p id="viewMeta" class="mt-2 text-[13.5px] text-stone-500"></p>
+        </div>
+        <button type="button" data-close-view class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-leaf-600/15 text-stone-500 u-ease hover:bg-leaf-50" aria-label="닫기">
+          <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+      <div id="viewBody" class="mt-7 whitespace-pre-wrap border-t border-leaf-600/12 pt-7 text-[15.5px] leading-relaxed text-stone-700"></div>
+      <button type="button" data-close-view class="mt-8 w-full rounded-full bg-leaf-600 px-6 py-3.5 text-[15px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">목록으로</button>
+    </div>
+  </dialog>
+
+  <!-- ================= 관리자 로그인 ================= -->
+  <dialog id="loginDlg" class="w-[min(92vw,24rem)] rounded-[2rem] border border-leaf-600/12 bg-white p-0 shadow-softlg backdrop:bg-leaf-900/55">
+    <form method="dialog" id="loginForm" class="p-7 text-center sm:p-9">
+      <span class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-leaf-500 text-white">
+        <iconify-icon icon="solar:lock-keyhole-minimalistic-bold" class="text-3xl"></iconify-icon>
+      </span>
+      <h3 class="mt-5 text-xl font-extrabold text-leaf-900">관리자 로그인</h3>
+      <p class="mt-2 text-[14px] leading-snug text-stone-500">공지사항 작성 권한이 있는 분만 이용하실 수 있습니다.</p>
+
+      <input type="password" id="pwInput" placeholder="비밀번호" autocomplete="current-password"
+             class="mt-6 w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3.5 text-[15px] text-stone-700 placeholder:text-stone-400 focus:border-leaf-500 focus:ring-leaf-500" />
+      <p id="pwError" class="mt-2 hidden text-[13px] font-semibold text-persimmon-700">비밀번호가 올바르지 않습니다.</p>
+
+      <div class="mt-6 flex gap-2.5">
+        <button type="button" data-close-login class="w-full rounded-full border border-stone-300 px-6 py-3.5 text-[15px] font-medium text-stone-600 u-ease hover:border-stone-400">취소</button>
+        <button type="submit" class="w-full rounded-full bg-leaf-600 px-6 py-3.5 text-[15px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">로그인</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= 글쓰기 / 수정 ================= -->
+  <dialog id="editDlg" class="w-[min(94vw,44rem)] rounded-[2rem] border border-leaf-600/12 bg-white p-0 shadow-softlg backdrop:bg-leaf-900/55">
+    <form id="editForm" class="max-h-[85vh] overflow-y-auto p-7 sm:p-9">
+      <div class="flex items-center justify-between gap-4">
+        <h3 id="editHeading" class="text-xl font-extrabold text-leaf-900">공지사항 작성</h3>
+        <button type="button" data-close-edit class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-leaf-600/15 text-stone-500 u-ease hover:bg-leaf-50" aria-label="닫기">
+          <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+
+      <label class="mt-7 block text-[13px] font-bold text-leaf-800">제목</label>
+      <input type="text" id="fTitle" required maxlength="120" placeholder="제목을 입력하세요"
+             class="mt-2 w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3.5 text-[15px] focus:border-leaf-500 focus:ring-leaf-500" />
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-[13px] font-bold text-leaf-800">작성자</label>
+          <input type="text" id="fAuthor" value="한두레" maxlength="20"
+                 class="mt-2 w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3.5 text-[15px] focus:border-leaf-500 focus:ring-leaf-500" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-leaf-800">등록일</label>
+          <input type="date" id="fDate" class="mt-2 w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3.5 text-[15px] focus:border-leaf-500 focus:ring-leaf-500" />
+        </div>
+      </div>
+
+      <label class="mt-5 block text-[13px] font-bold text-leaf-800">내용</label>
+      <textarea id="fBody" rows="9" required placeholder="내용을 입력하세요"
+                class="mt-2 w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3.5 text-[15px] leading-relaxed focus:border-leaf-500 focus:ring-leaf-500"></textarea>
+
+      <label class="mt-5 flex cursor-pointer items-center gap-2.5 text-[14px] font-medium text-stone-600">
+        <input type="checkbox" id="fPin" class="h-4 w-4 rounded border-leaf-600/30 text-leaf-600 focus:ring-leaf-500" />
+        목록 맨 위에 고정 (중요 공지)
+      </label>
+
+      <div class="mt-8 flex gap-2.5">
+        <button type="button" data-close-edit class="w-full rounded-full border border-stone-300 px-6 py-3.5 text-[15px] font-medium text-stone-600 u-ease hover:border-stone-400">취소</button>
+        <button type="submit" class="w-full rounded-full bg-leaf-600 px-6 py-3.5 text-[15px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">저장</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/notices.js"></script>
+  <script src="assets/board.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

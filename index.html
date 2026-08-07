@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>너와두리 캠핑장 · 한두레마을 | 충북 옥천 농촌캠핑</title>
+  <meta name="description" content="충북 옥천 청성면 한두레마을이 운영하는 너와두리 캠핑장. 오토캠핑 75동, 온돌 숙박동 11실, 축구장·물놀이체험장·자작나무숲 산책로까지. 예약문의 010-2309-7620" />
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="assets/tailwind.config.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="noise bg-white text-stone-700 font-sans antialiased selection:bg-leaf-200/60 selection:text-leaf-900 min-h-[100dvh]">
+
+  <!-- ================= BACKGROUND ================= -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-white"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(120% 80% at 50% -10%, rgba(130,196,82,0.12), transparent 55%), radial-gradient(70% 55% at 90% 108%, rgba(253,151,56,0.08), transparent 55%);"></div>
+    <div class="orb-a absolute -top-24 -left-24 h-[32rem] w-[32rem] rounded-full blur-[120px]" style="background:radial-gradient(circle, rgba(130,196,82,0.16), transparent 70%);"></div>
+    <div class="orb-b absolute top-1/3 -right-32 h-[34rem] w-[34rem] rounded-full blur-[130px]" style="background:radial-gradient(circle, rgba(253,151,56,0.10), transparent 70%);"></div>
+  </div>
+
+  <!-- ================= NAV =================
+       ※ 메뉴는 4개 페이지가 똑같은 내용을 가지고 있습니다.
+          메뉴를 고칠 때는 index / village / camping / notice
+          네 파일을 함께 수정해 주세요. -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto mt-4 w-[min(94%,76rem)]">
+      <nav class="u-ease flex items-center justify-between rounded-full border border-leaf-600/12 bg-white/80 px-4 py-2.5 pl-5 backdrop-blur-xl shadow-[0_8px_40px_-16px_rgba(43,71,28,0.3)]">
+
+        <a href="index.html" class="group flex items-center gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-[0.85rem] bg-leaf-500 text-white u-ease group-hover:scale-[1.04]">
+            <iconify-icon icon="ph:leaf-fill" class="text-[22px]"></iconify-icon>
+          </span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-[13.5px] font-semibold tracking-tight text-leaf-800">너와두리 캠핑장</span>
+            <span class="text-[12px] font-bold tracking-tight text-persimmon-700">옥천 한두레마을</span>
+          </span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-1 text-[14px] text-stone-600">
+          <a href="index.html" class="nav-link is-active u-ease rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800" aria-current="page">홈</a>
+
+          <div class="nav-item relative">
+            <a href="village.html" class="nav-link u-ease flex items-center gap-1 rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">
+              한두레마을 <iconify-icon icon="solar:alt-arrow-down-linear" class="text-[15px] opacity-60"></iconify-icon>
+            </a>
+            <div class="nav-panel absolute left-1/2 top-full z-10 w-52 pt-3">
+              <div class="rounded-2xl border border-leaf-600/12 bg-white p-2 shadow-softlg">
+                <a href="village.html#about" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:home-smile-linear" class="text-leaf-500"></iconify-icon>한두레마을 소개</a>
+                <a href="village.html#greeting" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:chat-round-line-linear" class="text-leaf-500"></iconify-icon>인사말</a>
+                <a href="village.html#brand" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:leaf-light" class="text-leaf-500"></iconify-icon>너와두리</a>
+                <a href="village.html#location" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:map-point-linear" class="text-leaf-500"></iconify-icon>오시는 길</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-item relative">
+            <a href="camping.html" class="nav-link u-ease flex items-center gap-1 rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">
+              너와두리 캠핑장 &amp; 숙소 <iconify-icon icon="solar:alt-arrow-down-linear" class="text-[15px] opacity-60"></iconify-icon>
+            </a>
+            <div class="nav-panel absolute left-1/2 top-full z-10 w-52 pt-3">
+              <div class="rounded-2xl border border-leaf-600/12 bg-white p-2 shadow-softlg">
+                <a href="camping.html#camping" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:tent-light" class="text-leaf-500"></iconify-icon>오토캠핑</a>
+                <a href="camping.html#stay" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="ph:van-light" class="text-leaf-500"></iconify-icon>카라반 &amp; 숙박 시설</a>
+                <a href="camping.html#facility" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:shower-linear" class="text-leaf-500"></iconify-icon>편의시설</a>
+                <a href="camping.html#extra" class="u-ease flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[14px] hover:bg-leaf-50 hover:text-leaf-800"><iconify-icon icon="solar:confetti-minimalistic-linear" class="text-leaf-500"></iconify-icon>부대시설</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="notice.html" class="nav-link u-ease rounded-full px-3.5 py-2 hover:bg-leaf-600/8 hover:text-leaf-800">한두레 사랑방</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="tel:01023097620" class="u-ease group hidden sm:inline-flex items-center gap-2 rounded-full bg-leaf-600 pl-5 pr-2 py-2 text-[13.5px] font-semibold text-white hover:scale-[1.02] active:scale-[0.98] hover:bg-leaf-500 shadow-[0_10px_24px_-10px_rgba(79,138,38,0.7)]">
+            예약 문의
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-persimmon-400 text-white">
+              <iconify-icon icon="solar:phone-calling-linear" class="u-ease group-hover:translate-x-0.5"></iconify-icon>
+            </span>
+          </a>
+          <button id="menuBtn" class="lg:hidden grid h-10 w-10 place-items-center rounded-full border border-leaf-600/15 bg-white text-leaf-800 u-ease hover:bg-leaf-50" aria-label="메뉴 열기">
+            <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 모바일 메뉴 -->
+  <div id="mobileMenu" class="fixed inset-0 z-[55] hidden">
+    <div class="absolute inset-0 bg-cream-50/95 backdrop-blur-2xl"></div>
+    <div class="no-bar relative flex h-[100dvh] flex-col gap-1 overflow-y-auto px-8 py-24">
+      <button id="menuClose" class="absolute right-6 top-7 grid h-11 w-11 place-items-center rounded-full border border-leaf-600/15 bg-white text-leaf-800" aria-label="메뉴 닫기">
+        <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+      </button>
+
+      <p class="mb-6 flex items-center gap-3">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-leaf-500 text-white"><iconify-icon icon="ph:leaf-fill" class="text-2xl"></iconify-icon></span>
+        <span class="flex flex-col leading-tight">
+          <span class="text-[15px] font-bold text-leaf-800">너와두리 캠핑장</span>
+          <span class="text-[12.5px] font-bold text-persimmon-700">옥천 한두레마을</span>
+        </span>
+      </p>
+
+      <a href="index.html" class="mob-link is-active u-ease py-2.5 text-[21px] font-extrabold text-leaf-800">홈</a>
+
+      <p class="mt-6 text-[12px] font-bold uppercase tracking-[0.14em] text-stone-400">한두레마을</p>
+      <a href="village.html#about" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">한두레마을 소개</a>
+      <a href="village.html#greeting" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">인사말</a>
+      <a href="village.html#brand" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">너와두리</a>
+      <a href="village.html#location" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">오시는 길</a>
+
+      <p class="mt-7 text-[12px] font-bold uppercase tracking-[0.14em] text-stone-400">너와두리 캠핑장 &amp; 숙소</p>
+      <a href="camping.html#camping" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">오토캠핑</a>
+      <a href="camping.html#stay" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">카라반 &amp; 숙박 시설</a>
+      <a href="camping.html#facility" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">편의시설</a>
+      <a href="camping.html#extra" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">부대시설</a>
+
+      <p class="mt-7 text-[12px] font-bold uppercase tracking-[0.14em] text-stone-400">한두레 사랑방</p>
+      <a href="notice.html" class="mob-link u-ease py-2.5 text-[19px] font-semibold text-leaf-800 hover:text-persimmon-700">공지사항</a>
+
+      <a href="tel:01023097620" class="mob-link u-ease mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-leaf-600 px-7 py-4 text-[17px] font-semibold text-white">
+        <iconify-icon icon="solar:phone-calling-linear"></iconify-icon> 010-2309-7620 예약문의
+      </a>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="relative overflow-hidden px-5 pt-32 pb-16 sm:pt-40 md:pb-24">
+      <div class="mx-auto grid w-[min(94%,76rem)] items-center gap-12 lg:grid-cols-12 lg:gap-10">
+
+        <div class="lg:col-span-6">
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-leaf-600/18 bg-leaf-600/8 px-3 py-1.5 text-[12px] font-bold tracking-[0.02em] text-leaf-700">
+            <span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-persimmon-400 opacity-80"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-persimmon-500"></span></span>
+            충북 옥천 청성면 · 한두레권역
+          </div>
+
+          <h1 class="reveal mt-6 text-[15vw] font-extrabold leading-[0.98] tracking-tightest sm:text-7xl lg:text-[5.6rem]" style="transition-delay:.06s">
+            <span class="relative inline-block">
+              <span class="bg-gradient-to-br from-leaf-400 via-leaf-600 to-leaf-900 bg-clip-text text-transparent">너와두리<br />캠핑장</span>
+              <svg class="absolute -bottom-3 left-0 w-full" height="16" viewBox="0 0 300 16" fill="none" preserveAspectRatio="none" aria-hidden="true"><path d="M2 11C60 5 120 5 180 8C230 10 270 10 298 6" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/><defs><linearGradient id="g" x1="0" y1="0" x2="300" y2="0"><stop stop-color="#fd9738"/><stop offset="1" stop-color="#c44509"/></linearGradient></defs></svg>
+            </span>
+          </h1>
+
+          <p class="reveal mt-10 max-w-xl text-[16.5px] leading-snug text-stone-600 sm:text-lg" style="transition-delay:.12s">
+            <b class="font-semibold text-leaf-800">“머무르고 싶은 너와두리, 살고 싶은 너와두리”</b><br />
+            보청천과 장연천이 만나는 자리, 옥천 한두레마을이 직접 운영하는 농촌캠핑장입니다.
+            75동 규모의 오토캠핑 사이트와 온돌 숙박동, 축구장·물놀이체험장·자작나무숲 산책로까지 한자리에 있습니다.
+          </p>
+
+          <div class="reveal mt-10 flex flex-wrap items-center gap-3" style="transition-delay:.18s">
+            <a href="tel:01023097620" class="group inline-flex items-center gap-2.5 rounded-full bg-leaf-600 pl-7 pr-2.5 py-3.5 text-[15px] font-semibold text-white u-ease hover:scale-[1.02] active:scale-[0.98] hover:bg-leaf-500 shadow-[0_16px_36px_-14px_rgba(79,138,38,0.75)]">
+              전화로 예약하기
+              <span class="grid h-8 w-8 place-items-center rounded-full bg-persimmon-400 text-white"><iconify-icon icon="solar:phone-calling-linear" class="u-ease group-hover:translate-x-0.5"></iconify-icon></span>
+            </a>
+            <a href="camping.html#camping" class="group inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-6 py-3.5 text-[15px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:bg-leaf-50 hover:shadow-soft">
+              <iconify-icon icon="ph:tent" class="text-persimmon-500"></iconify-icon>
+              캠핑 요금 보기
+            </a>
+            <a href="village.html#location" class="group inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-6 py-3.5 text-[15px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:bg-leaf-50 hover:shadow-soft">
+              <iconify-icon icon="solar:routing-2-linear" class="text-persimmon-500"></iconify-icon>
+              오시는 길
+            </a>
+          </div>
+
+          <dl class="reveal mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-leaf-600/12 pt-7" style="transition-delay:.24s">
+            <div>
+              <dt class="text-[12px] font-medium uppercase tracking-wider text-stone-400">캠핑 사이트</dt>
+              <dd class="mt-1 text-xl font-bold text-leaf-800">75동</dd>
+            </div>
+            <div>
+              <dt class="text-[12px] font-medium uppercase tracking-wider text-stone-400">숙박 객실</dt>
+              <dd class="mt-1 text-xl font-bold text-leaf-800">11실</dd>
+            </div>
+            <div>
+              <dt class="text-[12px] font-medium uppercase tracking-wider text-stone-400">이용 시간</dt>
+              <dd class="mt-1 text-xl font-bold text-leaf-800">14시 ~ 12시</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="reveal lg:col-span-6" style="transition-delay:.14s">
+          <div class="relative">
+            <div class="absolute -inset-6 rounded-[2.6rem] bg-leaf-400/12 blur-2xl"></div>
+            <div class="relative rounded-[2rem] border border-leaf-600/12 bg-white p-1.5 shadow-softlg u-ease hover:-translate-y-1 hover:shadow-[0_50px_100px_-40px_rgba(43,71,28,0.45)]">
+              <div class="relative overflow-hidden rounded-[calc(2rem-0.375rem)]">
+                <img src="images/camp-3.jpg" alt="너와두리 캠핑장 잔디 사이트에 텐트가 설치된 전경" width="1200" height="660" loading="eager" decoding="async" class="aspect-[4/3] w-full object-cover sm:aspect-[16/10]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 빠른 안내 띠 ================= -->
+    <section class="relative border-y border-leaf-600/10 bg-cream-100 px-5 py-8">
+      <div class="mx-auto grid w-[min(94%,76rem)] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex items-start gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-leaf-600 ring-1 ring-leaf-600/15"><iconify-icon icon="solar:phone-calling-bold" class="text-lg"></iconify-icon></span>
+          <div>
+            <p class="text-[12px] font-bold uppercase tracking-wider text-stone-400">예약 문의</p>
+            <p class="text-[15px] font-bold text-leaf-800"><a href="tel:01023097620" class="u-ease hover:text-persimmon-700">010-2309-7620</a></p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-leaf-600 ring-1 ring-leaf-600/15"><iconify-icon icon="solar:buildings-2-bold" class="text-lg"></iconify-icon></span>
+          <div>
+            <p class="text-[12px] font-bold uppercase tracking-wider text-stone-400">사무실</p>
+            <p class="text-[15px] font-bold text-leaf-800"><a href="tel:0437337620" class="u-ease hover:text-persimmon-700">043-733-7620</a></p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-leaf-600 ring-1 ring-leaf-600/15"><iconify-icon icon="solar:clock-circle-bold" class="text-lg"></iconify-icon></span>
+          <div>
+            <p class="text-[12px] font-bold uppercase tracking-wider text-stone-400">근무 시간</p>
+            <p class="text-[15px] font-bold text-leaf-800">09:00 ~ 18:00</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-leaf-600 ring-1 ring-leaf-600/15"><iconify-icon icon="solar:map-point-bold" class="text-lg"></iconify-icon></span>
+          <div>
+            <p class="text-[12px] font-bold uppercase tracking-wider text-stone-400">주소</p>
+            <p class="text-[15px] font-bold text-leaf-800">충북 옥천군 청성면 한두레로 387</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 한두레마을 요약 ================= -->
+    <section class="px-5 py-24 md:py-28">
+      <div class="mx-auto w-[min(94%,76rem)]">
+        <div class="reveal grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div class="lg:col-span-5">
+            <span class="inline-flex items-center gap-2 rounded-full bg-leaf-600/8 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-leaf-700">한두레마을</span>
+            <h2 class="mt-5 text-4xl font-extrabold leading-snug tracking-tight text-leaf-900 sm:text-[2.75rem]">여섯 마을이 모여<br />하나가 된 곳</h2>
+            <p class="mt-5 text-[16px] leading-relaxed text-stone-600">
+              석성리, 구음 1~2리, 거포리, 만명리, 무회리, 산계3리 —
+              옛 고향 그대로의 건강함이 배어 있는 마을들이 한두레권역을 이룹니다.
+              마을 주변을 어우르는 산세와 가로질러 흐르는 물이 도시생활에 지친 심신을 달래 줍니다.
+            </p>
+            <a href="village.html" class="group mt-8 inline-flex items-center gap-2.5 rounded-full bg-leaf-600 pl-6 pr-2.5 py-3.5 text-[15px] font-semibold text-white u-ease hover:scale-[1.02] active:scale-[0.98] hover:bg-leaf-500 shadow-[0_16px_36px_-14px_rgba(79,138,38,0.7)]">
+              한두레마을 알아보기
+              <span class="grid h-8 w-8 place-items-center rounded-full bg-persimmon-400 text-white"><iconify-icon icon="solar:arrow-right-linear" class="u-ease group-hover:translate-x-0.5"></iconify-icon></span>
+            </a>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="sm:col-span-2 rounded-[2rem] border border-leaf-600/12 bg-white p-1.5 shadow-softlg">
+                <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+                  <img src="images/camp-2.jpg" alt="보청천 물길을 따라 자리한 한두레마을 캠핑장 전경" width="1200" height="750" loading="lazy" decoding="async" class="aspect-[16/9] w-full object-cover" />
+                </div>
+              </div>
+              <div class="rounded-[1.75rem] border border-leaf-600/12 bg-white p-6 shadow-soft">
+                <span class="grid h-11 w-11 place-items-center rounded-xl bg-leaf-500 text-white"><iconify-icon icon="solar:shield-check-bold" class="text-xl"></iconify-icon></span>
+                <h3 class="mt-4 text-lg font-bold text-leaf-900">범죄없는 마을</h3>
+                <p class="mt-2 text-[14.5px] leading-snug text-stone-600">1970년 지정된 구음 1~2리를 품은, 아이와 함께 안심하고 머무는 마을입니다.</p>
+              </div>
+              <div class="rounded-[1.75rem] border border-leaf-600/12 bg-white p-6 shadow-soft">
+                <span class="grid h-11 w-11 place-items-center rounded-xl bg-persimmon-400 text-white"><iconify-icon icon="solar:waterdrops-bold" class="text-xl"></iconify-icon></span>
+                <h3 class="mt-4 text-lg font-bold text-leaf-900">금강수계 1급수 보청천</h3>
+                <p class="mt-2 text-[14.5px] leading-snug text-stone-600">풍부한 수량과 다양한 어족자원을 보유해 생태체험과 학습에 적합합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 시설 요약 ================= -->
+    <section class="relative border-y border-leaf-600/10 bg-cream-100 px-5 py-24 md:py-28">
+      <div class="mx-auto w-[min(94%,76rem)]">
+        <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div class="max-w-xl">
+            <span class="inline-flex items-center gap-2 rounded-full bg-persimmon-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-persimmon-700">캠핑장 &amp; 숙소</span>
+            <h2 class="mt-5 text-4xl font-extrabold leading-snug tracking-tight text-leaf-900 sm:text-[2.75rem]">캠핑도, 숙박도<br class="hidden sm:block" /> 한자리에서</h2>
+            <p class="mt-5 text-[16px] leading-snug text-stone-600">
+              도농교류복합센터를 중심으로 오토캠핑 사이트 75동, 온돌 숙박동 11실,
+              축구장과 물놀이체험장까지 마을이 직접 운영합니다.
+            </p>
+          </div>
+          <a href="camping.html" class="inline-flex shrink-0 items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-6 py-3.5 text-[15px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:shadow-soft">
+            시설 전체 보기 <iconify-icon icon="solar:arrow-right-linear" class="text-persimmon-500"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a href="camping.html#camping" class="group u-ease rounded-[1.5rem] border border-leaf-600/12 bg-white p-6 shadow-soft hover:-translate-y-1 hover:border-persimmon-300 hover:shadow-softlg">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-leaf-500 text-white"><iconify-icon icon="ph:tent-fill" class="text-2xl"></iconify-icon></span>
+            <h3 class="mt-4 text-[17px] font-bold text-leaf-900">오토캠핑</h3>
+            <p class="mt-1.5 text-[14px] leading-snug text-stone-500">파쇄석·잔디블럭·흙마당 75동</p>
+            <p class="mt-3 text-[14px] font-bold text-persimmon-700">1박 25,000원 ~</p>
+          </a>
+          <a href="camping.html#stay" class="group u-ease rounded-[1.5rem] border border-leaf-600/12 bg-white p-6 shadow-soft hover:-translate-y-1 hover:border-persimmon-300 hover:shadow-softlg">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-persimmon-400 text-white"><iconify-icon icon="ph:van-fill" class="text-2xl"></iconify-icon></span>
+            <h3 class="mt-4 text-[17px] font-bold text-leaf-900">카라반 &amp; 숙박</h3>
+            <p class="mt-1.5 text-[14px] leading-snug text-stone-500">온돌 객실 11실 · 임대형 캠핑</p>
+            <p class="mt-3 text-[14px] font-bold text-persimmon-700">40,000원 ~</p>
+          </a>
+          <a href="camping.html#facility" class="group u-ease rounded-[1.5rem] border border-leaf-600/12 bg-white p-6 shadow-soft hover:-translate-y-1 hover:border-persimmon-300 hover:shadow-softlg">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-leaf-600 text-white"><iconify-icon icon="solar:shower-bold" class="text-2xl"></iconify-icon></span>
+            <h3 class="mt-4 text-[17px] font-bold text-leaf-900">편의시설</h3>
+            <p class="mt-1.5 text-[14px] leading-snug text-stone-500">샤워실 · 개수대 · 매점 · 주차장</p>
+            <p class="mt-3 text-[14px] font-bold text-leaf-700">전기·샤워장 요금 포함</p>
+          </a>
+          <a href="camping.html#extra" class="group u-ease rounded-[1.5rem] border border-leaf-600/12 bg-white p-6 shadow-soft hover:-translate-y-1 hover:border-persimmon-300 hover:shadow-softlg">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-leaf-700 text-white"><iconify-icon icon="solar:confetti-bold" class="text-2xl"></iconify-icon></span>
+            <h3 class="mt-4 text-[17px] font-bold text-leaf-900">부대시설</h3>
+            <p class="mt-1.5 text-[14px] leading-snug text-stone-500">축구장 · 물놀이 · 세미나실</p>
+            <p class="mt-3 text-[14px] font-bold text-leaf-700">물놀이체험장 무료</p>
+          </a>
+        </div>
+
+        <div class="reveal mt-4 grid gap-4 sm:grid-cols-3">
+          <img src="images/camp-1.jpg" alt="가을 너와두리 캠핑장 사이트 전경" width="1200" height="800" loading="lazy" decoding="async" class="aspect-[3/2] w-full rounded-[1.5rem] border border-leaf-600/12 object-cover" />
+          <img src="images/stay-1.jpg" alt="목조 숙박동 외관" width="1200" height="800" loading="lazy" decoding="async" class="aspect-[3/2] w-full rounded-[1.5rem] border border-leaf-600/12 object-cover" />
+          <img src="images/stay-2.jpg" alt="가족형 객실 숙박동과 정자" width="1200" height="800" loading="lazy" decoding="async" class="aspect-[3/2] w-full rounded-[1.5rem] border border-leaf-600/12 object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 최근 소식 ================= -->
+    <section class="px-5 py-24 md:py-28">
+      <div class="mx-auto w-[min(94%,76rem)]">
+        <div class="reveal grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div class="lg:col-span-4">
+            <span class="inline-flex items-center gap-2 rounded-full bg-leaf-600/8 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-leaf-700">한두레 사랑방</span>
+            <h2 class="mt-5 text-4xl font-extrabold leading-snug tracking-tight text-leaf-900 sm:text-[2.75rem]">최근 소식</h2>
+            <p class="mt-5 text-[16px] leading-snug text-stone-600">너와두리의 소식과 안내를 전해드립니다.</p>
+            <a href="notice.html" class="group mt-8 inline-flex items-center gap-2 rounded-full border border-leaf-600/25 bg-white px-6 py-3.5 text-[15px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:shadow-soft">
+              공지사항 전체 보기
+              <iconify-icon icon="solar:arrow-right-linear" class="text-persimmon-500 u-ease group-hover:translate-x-0.5"></iconify-icon>
+            </a>
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="rounded-[2rem] border border-leaf-600/12 bg-white p-1.5 shadow-softlg">
+              <ul id="noticePreview" data-limit="4" class="divide-y divide-leaf-600/10 rounded-[calc(2rem-0.375rem)] p-2"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 예약 안내 ================= -->
+    <section class="px-5 pb-24 md:pb-28">
+      <div class="mx-auto w-[min(94%,76rem)]">
+        <div class="reveal overflow-hidden rounded-[2.5rem] border border-leaf-600/12 bg-white p-1.5 shadow-softlg">
+          <div class="rounded-[calc(2.5rem-0.375rem)] bg-leaf-800 px-7 py-11 sm:px-12 sm:py-14">
+            <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+              <div class="lg:col-span-7">
+                <span class="inline-flex items-center gap-2 rounded-full border border-persimmon-300/40 bg-persimmon-400/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-persimmon-100">예약 안내</span>
+                <h2 class="mt-5 text-3xl font-extrabold leading-snug text-white sm:text-4xl">전화 예약으로 도와드립니다</h2>
+                <p class="mt-5 text-[15.5px] leading-relaxed text-white/80">
+                  휴일엔 온라인 예약대행 서비스가 2025년 3월 31일자로 종료되어,
+                  캠핑장은 <b class="font-semibold text-white">캠핏·네이버</b> 또는 전화로 예약하실 수 있습니다.
+                  숙박 상품은 당분간 <b class="font-semibold text-white">전화 예약만</b> 가능합니다.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a href="tel:01023097620" class="group inline-flex items-center gap-2.5 rounded-full bg-persimmon-400 pl-6 pr-2.5 py-3.5 text-[15px] font-bold text-white u-ease hover:scale-[1.02] active:scale-[0.98] hover:bg-persimmon-300">
+                    010-2309-7620
+                    <span class="grid h-8 w-8 place-items-center rounded-full bg-white/20"><iconify-icon icon="solar:phone-calling-linear"></iconify-icon></span>
+                  </a>
+                  <a href="tel:0437337620" class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-[15px] font-medium text-white u-ease hover:bg-white/20">
+                    <iconify-icon icon="solar:buildings-2-linear"></iconify-icon> 사무실 043-733-7620
+                  </a>
+                </div>
+              </div>
+
+              <div class="lg:col-span-5">
+                <div class="rounded-[1.5rem] bg-white/10 p-6 ring-1 ring-white/15">
+                  <p class="text-[12px] font-bold uppercase tracking-[0.14em] text-persimmon-100">입금 계좌</p>
+                  <ul class="mt-4 space-y-4 text-[14px]">
+                    <li>
+                      <p class="font-semibold text-white/60">캠핑장</p>
+                      <p class="mt-0.5 font-bold text-white">농협 351-0796-9033-23</p>
+                      <p class="text-[13px] text-white/60">너와두리영농조합법인</p>
+                    </li>
+                    <li>
+                      <p class="font-semibold text-white/60">숙박 · 시설</p>
+                      <p class="mt-0.5 font-bold text-white">농협 351-0796-9064-03</p>
+                      <p class="text-[13px] text-white/60">너와두리영농조합법인</p>
+                    </li>
+                  </ul>
+                  <p class="mt-5 border-t border-white/15 pt-4 text-[12.5px] leading-snug text-white/70">
+                    입금 후 예약자 성명과 오시는 날짜를 문자로 보내 주시면 예약이 확정됩니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-leaf-600/12 bg-white px-5 pb-12 pt-16">
+    <div class="mx-auto w-[min(94%,76rem)]">
+      <div class="flex flex-col justify-between gap-10 md:flex-row">
+        <div class="max-w-sm">
+          <a href="index.html" class="flex items-center gap-3">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-[0.85rem] bg-leaf-500 text-white"><iconify-icon icon="ph:leaf-fill" class="text-[22px]"></iconify-icon></span>
+            <span class="flex flex-col leading-tight">
+              <span class="text-[14px] font-semibold text-leaf-800">너와두리 캠핑장</span>
+              <span class="text-[12px] font-bold text-persimmon-700">옥천 한두레마을</span>
+            </span>
+          </a>
+          <p class="mt-4 text-[14px] leading-snug text-stone-500">
+            함께해서 정겨운 그 곳, 함께해서 행복한 마을.<br />
+            한두레영농조합법인이 직접 운영합니다.
+          </p>
+          <a href="mailto:handure123@hanmail.net" class="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-leaf-700 u-ease hover:text-persimmon-700">
+            <iconify-icon icon="solar:letter-bold" class="text-persimmon-500"></iconify-icon>handure123@hanmail.net
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-10 sm:grid-cols-3">
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">한두레마을</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="village.html#about" class="u-ease hover:text-persimmon-700">한두레마을 소개</a></li>
+              <li><a href="village.html#greeting" class="u-ease hover:text-persimmon-700">인사말</a></li>
+              <li><a href="village.html#brand" class="u-ease hover:text-persimmon-700">너와두리</a></li>
+              <li><a href="village.html#location" class="u-ease hover:text-persimmon-700">오시는 길</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">캠핑장 &amp; 숙소</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="camping.html#camping" class="u-ease hover:text-persimmon-700">오토캠핑</a></li>
+              <li><a href="camping.html#stay" class="u-ease hover:text-persimmon-700">카라반 &amp; 숙박</a></li>
+              <li><a href="camping.html#facility" class="u-ease hover:text-persimmon-700">편의시설</a></li>
+              <li><a href="camping.html#extra" class="u-ease hover:text-persimmon-700">부대시설</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[12px] font-medium uppercase tracking-wider text-stone-400">이용 안내</p>
+            <ul class="mt-4 space-y-2.5 text-[14px] text-stone-600">
+              <li><a href="notice.html" class="u-ease hover:text-persimmon-700">한두레 사랑방</a></li>
+              <li><a href="tel:01023097620" class="u-ease hover:text-persimmon-700">예약문의 010-2309-7620</a></li>
+              <li><a href="tel:0437337620" class="u-ease hover:text-persimmon-700">사무실 043-733-7620</a></li>
+              <li>근무시간 09:00 ~ 18:00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 border-t border-leaf-600/12 pt-7 text-[13px] leading-relaxed text-stone-400">
+        <p>
+          상호 : 한두레영농조합법인 &nbsp;|&nbsp; 대표자 : 이기수 &nbsp;|&nbsp; 개인정보 담당자 : 정혜원<br />
+          주소 : 충청북도 옥천군 청성면 한두레로 387 &nbsp;|&nbsp; 전화 : 043-733-7620 &nbsp;|&nbsp; E-mail : handure123@hanmail.net<br />
+          사업자등록번호 : 302-81-19253 &nbsp;|&nbsp; 통신판매업신고번호 : 제 2009-충북옥천-10호
+        </p>
+        <p class="mt-4">© <span id="year">2026</span> 한두레영농조합법인. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/notices.js"></script>
+  <script src="assets/board.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
