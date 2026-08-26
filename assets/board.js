@@ -13,9 +13,9 @@
    └────────────────────────────────────────────────────────┘
 
    사진 첨부
-     사진 파일을 images/notice/ 폴더에 올린 뒤(저장소에 커밋),
-     글쓰기 창에서 그 경로를 적으면 됩니다.
-     예) images/notice/2026-축제-1.jpg
+     글쓰기 창에서 사진을 고르거나 끌어다 놓으면 바로 올라갑니다.
+     올리기 전에 브라우저가 사진 크기를 자동으로 줄여 주기 때문에
+     휴대폰으로 찍은 큰 사진도 그대로 쓸 수 있습니다.
    ══════════════════════════════════════════════════════════ */
 (function () {
   const API = '/api';
@@ -323,7 +323,6 @@
   /* ── 글쓰기 창의 사진 관리 ───────────────────────────── */
   function renderEditImages() {
     const box = document.getElementById('imgList');
-    document.getElementById('imgNone').hidden = editImages.length > 0;
     box.innerHTML = editImages.map((src, i) => `
       <div class="relative overflow-hidden rounded-xl border border-leaf-600/12">
         <img src="${esc(src)}" alt="" class="aspect-[4/3] w-full object-cover" />
@@ -357,6 +356,160 @@
     if (e.key === 'Enter') { e.preventDefault(); addPath(); }
   });
 
+  /* ── 사진 올리기 ─────────────────────────────────────
+     휴대폰·카메라 사진은 용량이 커서 그대로 올릴 수 없습니다.
+     브라우저에서 먼저 크기를 줄인 뒤 서버로 보냅니다. */
+  const MAX_IMAGES = 40;
+  const elDrop   = document.getElementById('imgDrop');
+  const elFiles  = document.getElementById('fFiles');
+  const elStatus = document.getElementById('imgStatus');
+  const elError  = document.getElementById('imgError');
+  let uploading  = false;
+
+  function say(msg) {
+    elStatus.hidden = !msg;
+    elStatus.innerHTML = msg
+      ? `<iconify-icon icon="solar:refresh-linear" class="animate-spin"></iconify-icon>${esc(msg)}`
+      : '';
+  }
+  function oops(msg) {
+    elError.hidden = !msg;
+    elError.textContent = msg || '';
+  }
+
+  /* 사진 한 장을 지정한 크기 안으로 줄입니다 */
+  async function shrink(file, maxSide, quality) {
+    let bitmap;
+    try {
+      bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    } catch (e) {
+      try { bitmap = await createImageBitmap(file); } catch (e2) { return null; }
+    }
+
+    const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+    const w = Math.max(1, Math.round(bitmap.width  * scale));
+    const h = Math.max(1, Math.round(bitmap.height * scale));
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(bitmap, 0, 0, w, h);
+    if (bitmap.close) bitmap.close();
+
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', quality));
+    if (!blob) return null;
+    const name = String(file.name || 'photo').replace(/\.[^.]+$/, '') + '.jpg';
+    return new File([blob], name, { type: 'image/jpeg' });
+  }
+
+  /* 1.4MB 안에 들어올 때까지 단계적으로 줄입니다 */
+  const LIMIT = 1400 * 1024;
+  const STEPS = [[1600, 0.82], [1280, 0.75], [1024, 0.68], [800, 0.6]];
+
+  async function prepare(file) {
+    // 이미 충분히 작은 GIF 는 움직임을 살리려고 그대로 보냅니다
+    if (file.type === 'image/gif' && file.size <= LIMIT) return file;
+
+    for (const [side, q] of STEPS) {
+      const out = await shrink(file, side, q);
+      if (!out) break;
+      if (out.size <= LIMIT) return out;
+    }
+    if (file.size <= LIMIT && /^image\/(jpeg|png|webp|gif)$/.test(file.type)) return file;
+    return null;
+  }
+
+  async function uploadFiles(fileList) {
+    const files = Array.from(fileList || []).filter(f => f && f.size > 0);
+    if (!files.length || uploading) return;
+
+    oops('');
+    const room = MAX_IMAGES - editImages.length;
+    if (room <= 0) { oops(`사진은 최대 ${MAX_IMAGES}장까지 넣을 수 있습니다.`); return; }
+    const todo = files.slice(0, room);
+    if (files.length > room) oops(`${MAX_IMAGES}장까지만 넣을 수 있어 앞의 ${room}장만 올립니다.`);
+
+    uploading = true;
+    elDrop.classList.add('pointer-events-none', 'opacity-60');
+
+    try {
+      for (let i = 0; i < todo.length; i++) {
+        const f = todo[i];
+        say(`사진 준비 중… (${i + 1}/${todo.length})`);
+
+        if (!/^image\//.test(f.type)) {
+          oops(`${f.name} — 사진 파일이 아닙니다.`);
+          continue;
+        }
+
+        const small = await prepare(f);
+        if (!small) {
+          oops(`${f.name} — 이 사진은 읽을 수 없습니다. JPG 나 PNG 로 저장한 뒤 다시 올려 주세요.`);
+          continue;
+        }
+
+        say(`올리는 중… (${i + 1}/${todo.length})`);
+        const fd = new FormData();
+        fd.append('file', small, small.name);
+
+        const res = await fetch(API + '/upload', {
+          method: 'POST',
+          credentials: 'same-origin',
+          body: fd
+        });
+        let data = null;
+        try { data = await res.json(); } catch (e) {}
+        if (!res.ok) {
+          oops((data && data.error) || '사진을 올리지 못했습니다.');
+          break;
+        }
+
+        (data.files || []).forEach(x => editImages.push(x.url));
+        renderEditImages();
+      }
+    } catch (e) {
+      oops('사진을 올리지 못했습니다. 인터넷 연결을 확인해 주세요.');
+    } finally {
+      uploading = false;
+      elDrop.classList.remove('pointer-events-none', 'opacity-60');
+      say('');
+      elFiles.value = '';
+    }
+  }
+
+  elDrop.addEventListener('click', () => elFiles.click());
+  elDrop.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); elFiles.click(); }
+  });
+  elFiles.addEventListener('change', () => uploadFiles(elFiles.files));
+
+  ['dragenter', 'dragover'].forEach(ev =>
+    elDrop.addEventListener(ev, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      elDrop.classList.add('border-leaf-500', 'bg-leaf-50');
+    })
+  );
+  ['dragleave', 'drop'].forEach(ev =>
+    elDrop.addEventListener(ev, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      elDrop.classList.remove('border-leaf-500', 'bg-leaf-50');
+    })
+  );
+  elDrop.addEventListener('drop', (e) => {
+    if (e.dataTransfer && e.dataTransfer.files) uploadFiles(e.dataTransfer.files);
+  });
+
+  // 창 밖에 떨어뜨렸을 때 브라우저가 사진을 열어버리지 않도록
+  ['dragover', 'drop'].forEach(ev =>
+    el.editDlg.addEventListener(ev, (e) => { e.preventDefault(); })
+  );
+
+  // 복사한 사진을 붙여넣기(Ctrl+V)로도 넣을 수 있습니다
+  el.editDlg.addEventListener('paste', (e) => {
+    const items = (e.clipboardData && e.clipboardData.files) || null;
+    if (items && items.length) { e.preventDefault(); uploadFiles(items); }
+  });
+
   /* ── 글쓰기 / 수정 / 삭제 ────────────────────────────── */
   function openEdit(id) {
     editingId = id ?? null;
@@ -368,6 +521,8 @@
     document.getElementById('fBody').value   = p ? p.body : '';
     document.getElementById('fPin').checked  = p ? p.pin : false;
     document.getElementById('fImgPath').value = '';
+    elFiles.value = '';
+    say(''); oops('');
     editImages = p ? p.images.slice() : [];
     renderEditImages();
     el.editDlg.showModal();
@@ -388,6 +543,7 @@
 
   document.getElementById('editForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (uploading) { oops('사진을 올리는 중입니다. 잠시 후 저장해 주세요.'); return; }
     const btn = e.target.querySelector('button[type="submit"]');
     const data = {
       title:  document.getElementById('fTitle').value.trim(),
