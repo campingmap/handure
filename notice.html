@@ -368,27 +368,16 @@
       <p id="imgNone" class="mt-2 rounded-2xl border border-dashed border-leaf-600/20 bg-cream-50 px-4 py-6 text-center text-[13.5px] text-stone-400">
         첨부된 사진이 없습니다.
       </p>
-      <p id="imgBusy" class="mt-2 flex items-center gap-2 text-[13px] font-semibold text-leaf-700" hidden>
-        <iconify-icon icon="solar:refresh-linear" class="animate-spin"></iconify-icon> 사진을 넣는 중입니다…
-      </p>
 
-      <div class="mt-3 grid gap-2.5 sm:grid-cols-2">
-        <label class="flex cursor-pointer items-center justify-center gap-2 rounded-2xl border border-leaf-600/25 bg-white px-4 py-3 text-[14px] font-medium text-leaf-800 u-ease hover:border-leaf-600/50 hover:bg-leaf-50">
-          <iconify-icon icon="solar:gallery-add-linear" class="text-persimmon-500"></iconify-icon> 사진 고르기
-          <input type="file" id="fFiles" accept="image/*" multiple class="hidden" />
-        </label>
-        <div class="flex gap-2">
-          <input type="text" id="fImgPath" placeholder="images/notice/파일이름.jpg"
-                 class="w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3 text-[14px] placeholder:text-stone-400 focus:border-leaf-500 focus:ring-leaf-500" />
-          <button type="button" id="addPathBtn" class="shrink-0 rounded-2xl bg-leaf-600 px-5 text-[14px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">추가</button>
-        </div>
+      <div class="mt-3 flex gap-2">
+        <input type="text" id="fImgPath" placeholder="images/notice/파일이름.jpg"
+               class="w-full rounded-2xl border-leaf-600/20 bg-white px-4 py-3 text-[14px] placeholder:text-stone-400 focus:border-leaf-500 focus:ring-leaf-500" />
+        <button type="button" id="addPathBtn" class="shrink-0 rounded-2xl bg-leaf-600 px-5 text-[14px] font-semibold text-white u-ease hover:bg-leaf-500 active:scale-[0.98]">추가</button>
       </div>
 
       <p class="mt-3 rounded-2xl bg-cream-100 p-4 text-[12.5px] leading-relaxed text-stone-600">
-        <b class="text-leaf-800">사진 고르기</b> — 컴퓨터의 사진을 바로 넣습니다. 자동으로 줄여 저장하지만
-        <b>글을 쓴 이 브라우저에서만</b> 보입니다.<br />
-        <b class="text-leaf-800">파일 이름으로 추가</b> — 사진을 <b>images/notice/</b> 폴더에 올린 뒤 경로를 적으면
-        모든 방문자에게 보이고 저장 용량도 쓰지 않습니다. <b>이 방법을 권합니다.</b>
+        사진은 <b class="text-leaf-800">images/notice/</b> 폴더에 올린 뒤 그 경로를 적어 주세요.<br />
+        예) <b>images/notice/2026-축제-1.jpg</b>
       </p>
 
       <label class="mt-6 flex cursor-pointer items-center gap-2.5 text-[14px] font-medium text-stone-600">
@@ -423,7 +412,6 @@
     </div>
   </dialog>
 
-  <script src="assets/notices.js"></script>
   <script src="assets/board.js"></script>
   <script src="assets/site.js"></script>
 </body>

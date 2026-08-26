@@ -1,0 +1,29 @@
+{
+  // ══════════════════════════════════════════════════════
+  //  Cloudflare 배포 설정
+  //
+  //  database_id 는 D1 데이터베이스를 만들면 받는 값입니다.
+  //  아래 "여기에_D1_ID" 자리에 그 값을 넣어 주세요.
+  // ══════════════════════════════════════════════════════
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "handure",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-25",
+
+  "observability": { "enabled": true },
+
+  // 홈페이지 파일 (HTML·사진)
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+
+  // 공지사항 데이터베이스
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "handure",
+      "database_id": "여기에_D1_ID"
+    }
+  ]
+}
