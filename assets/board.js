@@ -320,6 +320,49 @@
     await load();
   });
 
+  /* ── 백업 내려받기 ───────────────────────────────────
+     게시판의 모든 글을 파일 하나로 내려받습니다. */
+  const exportBtn = document.getElementById('exportBtn');
+  exportBtn.addEventListener('click', async () => {
+    const label = exportBtn.innerHTML;
+    exportBtn.disabled = true;
+    exportBtn.innerHTML = '<iconify-icon icon="solar:refresh-linear" class="animate-spin"></iconify-icon> 모으는 중…';
+
+    try {
+      const all = [];
+      let p = 1, last = 1;
+      do {
+        const d = await api(`/posts?page=${p}`);
+        all.push(...d.posts);
+        last = d.pages;
+        p += 1;
+      } while (p <= last);
+
+      const today = new Date().toISOString().slice(0, 10);
+      const data = {
+        site: '너와두리 캠핑장 · 한두레 사랑방',
+        savedAt: new Date().toISOString(),
+        count: all.length,
+        posts: all
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = `한두레-공지백업-${today}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      alert('백업을 만들지 못했습니다. ' + e.message);
+    } finally {
+      exportBtn.disabled = false;
+      exportBtn.innerHTML = label;
+    }
+  });
+
   /* ── 글쓰기 창의 사진 관리 ───────────────────────────── */
   function renderEditImages() {
     const box = document.getElementById('imgList');
