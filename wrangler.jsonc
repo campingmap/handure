@@ -2,8 +2,7 @@
   // ══════════════════════════════════════════════════════
   //  Cloudflare 배포 설정
   //
-  //  database_id 는 D1 데이터베이스를 만들면 받는 값입니다.
-  //  아래 "여기에_D1_ID" 자리에 그 값을 넣어 주세요.
+  //  이 파일은 건드리지 않아도 됩니다.
   // ══════════════════════════════════════════════════════
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "handure",
@@ -23,7 +22,7 @@
     {
       "binding": "DB",
       "database_name": "handure",
-      "database_id": "여기에_D1_ID"
+      "database_id": "38c9da9f-0531-4c6b-8325-d567fb2347c2"
     }
   ]
 }
