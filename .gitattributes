@@ -1,0 +1,9 @@
+# 텍스트 파일 줄바꿈을 저장소에서는 LF 로 통일합니다
+* text=auto eol=lf
+
+# 이미지·영상은 그대로 (바이너리)
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.mp4 binary

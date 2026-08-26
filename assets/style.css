@@ -1,0 +1,146 @@
+/* ══════════════════════════════════════════════════════════
+   너와두리 캠핑장 — 공통 스타일
+   4개 페이지(홈 · 한두레마을 · 캠핑장&숙소 · 사랑방)가 함께 씁니다.
+   ══════════════════════════════════════════════════════════ */
+
+:root { color-scheme: light; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-padding-top: 6.5rem; }
+/* 페이지 안 메뉴(서브내비)가 있는 페이지는 조금 더 여유를 둡니다 */
+html.has-subnav { scroll-padding-top: 10.5rem; }
+body { word-break: keep-all; overflow-wrap: anywhere; }
+
+.u-ease { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* 스크롤 등장 애니메이션 */
+.reveal { opacity: 0; transform: translateY(2rem); filter: blur(4px); transition: opacity .9s cubic-bezier(0.16,1,0.3,1), transform .9s cubic-bezier(0.16,1,0.3,1), filter .9s cubic-bezier(0.16,1,0.3,1); }
+.reveal.is-in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+@keyframes floatY { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-26px) } }
+@keyframes floatY2 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(20px) } }
+/* will-change 로 별도 레이어에 올려, 흐림 효과를 매 프레임 다시 그리지 않게 합니다 */
+.orb-a { animation: floatY 9s ease-in-out infinite; will-change: transform; }
+.orb-b { animation: floatY2 11s ease-in-out infinite; will-change: transform; }
+
+/* 필름 그레인 */
+.noise::before {
+  content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none;
+  opacity: 0.03; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; filter:none; }
+  .orb-a,.orb-b { animation: none !important; }
+}
+
+.no-bar::-webkit-scrollbar { display:none; }
+.no-bar { -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ===== 데스크톱 드롭다운 ===== */
+.nav-item > .nav-panel {
+  opacity: 0; visibility: hidden; transform: translate(-50%, .5rem);
+  transition: all .35s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-item:hover > .nav-panel,
+.nav-item:focus-within > .nav-panel {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0);
+}
+
+/* 현재 보고 있는 페이지 표시 */
+.nav-link.is-active { background: rgba(79,138,38,.10); color: #34561e; font-weight: 600; }
+.mob-link.is-active { color: #c44509; }
+
+/* ===== 페이지 안 메뉴 (서브내비) ===== */
+.subnav {
+  position: sticky; top: 5.5rem; z-index: 40;
+  border-bottom: 1px solid rgba(79,138,38,.12);
+  background: rgba(255,255,255,.85); backdrop-filter: blur(14px);
+}
+.subnav a {
+  flex: 0 0 auto; border-radius: 9999px; padding: .55rem 1.05rem;
+  font-size: 14px; font-weight: 600; white-space: nowrap; color: #57534e;
+  transition: all .35s cubic-bezier(0.16,1,0.3,1);
+}
+.subnav a:hover { background: #f2f9ec; color: #3f6c20; }
+.subnav a.is-current { background: #4f8a26; color: #fff; box-shadow: 0 10px 22px -12px rgba(79,138,38,.8); }
+
+/* ===== 탭 (객실 분류) ===== */
+.vt {
+  flex:0 0 auto; border-radius:9999px; padding:.6rem 1.1rem;
+  font-size:14px; font-weight:600; white-space:nowrap;
+  color:#3f6c20; background:#fff; border:1px solid rgba(79,138,38,.18);
+  transition:all .5s cubic-bezier(0.16,1,0.3,1); cursor:pointer;
+}
+.vt:hover { border-color:rgba(79,138,38,.45); }
+.vt[aria-selected="true"] {
+  color:#fff; background:#4f8a26; border-color:#4f8a26;
+  box-shadow:0 12px 26px -12px rgba(79,138,38,.7);
+}
+.vp[hidden] { display:none; }
+.vp:not([hidden]) { animation: vpIn .5s cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes vpIn { from { opacity:0; transform:translateY(.75rem) } to { opacity:1; transform:none } }
+@media (prefers-reduced-motion: reduce) { .vp:not([hidden]) { animation:none; } }
+
+/* ===== 표 =====
+   표는 좁은 화면에서 가로로 스크롤됩니다.
+   min-width:0 이 없으면 그리드 칸이 표 너비만큼 벌어져
+   페이지 전체에 가로 스크롤이 생기므로 반드시 함께 둡니다. */
+.tbl-wrap { overflow-x: auto; min-width: 0; max-width: 100%; }
+.grid > *, .flex > * { min-width: 0; }
+.tbl { width:100%; min-width:36rem; border-collapse:separate; border-spacing:0; font-size:14.5px; }
+.tbl thead th {
+  background:#f2f9ec; color:#34561e; font-weight:700; white-space:nowrap;
+  padding:.9rem 1rem; border-bottom:1px solid rgba(79,138,38,.2); text-align:center;
+}
+.tbl tbody td { padding:.95rem 1rem; border-bottom:1px solid rgba(79,138,38,.12); color:#44403c; text-align:center; vertical-align:middle; }
+.tbl tbody tr:last-child td { border-bottom:0; }
+.tbl tbody tr:hover td { background:#fdfbf6; }
+.tbl .lead { font-weight:700; color:#2b471c; text-align:left; }
+.tbl .price { font-weight:800; color:#c44509; white-space:nowrap; }
+.tbl .memo { font-size:13px; color:#78716c; text-align:left; }
+
+/* ===== 게시판 ===== */
+.board-row:hover { background:#fdfbf6; }
+.chip-notice { background:#c44509; color:#fff; }
+dialog::backdrop { background: rgba(43,71,28,.55); backdrop-filter: blur(4px); }
+dialog[open] { animation: dlgIn .35s cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes dlgIn { from { opacity:0; transform:translateY(1rem) scale(.98) } to { opacity:1; transform:none } }
+
+/* ═══════════════════════════════════════════════════
+   객실 사진 슬라이드
+   HTML 에서 .rslide 안에 <img> 를 여러 장 넣으면
+   자동으로 슬라이드가 됩니다. (assets/site.js 가 처리)
+   ═══════════════════════════════════════════════════ */
+.rslide { position: relative; overflow: hidden; border-radius: 1.5rem; border: 1px solid rgba(79,138,38,.12); background: #f5f5f4; }
+.rslide-track { display: flex; transition: transform .55s cubic-bezier(0.16,1,0.3,1); }
+.rslide-track > img { flex: 0 0 100%; width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+
+.rslide-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+  color: #fff; border: 1px solid rgba(255,255,255,.3); background: rgba(43,71,28,.45);
+  backdrop-filter: blur(10px); opacity: 0; transition: all .35s cubic-bezier(0.16,1,0.3,1); z-index: 2;
+}
+.rslide:hover .rslide-btn, .rslide:focus-within .rslide-btn { opacity: 1; }
+.rslide-btn:hover { background: rgba(43,71,28,.8); }
+.rslide-btn.prev { left: .75rem; }
+.rslide-btn.next { right: .75rem; }
+@media (hover: none) { .rslide-btn { opacity: 1; } }
+
+.rslide-dots {
+  position: absolute; inset-inline: 0; bottom: .75rem; z-index: 2;
+  display: flex; justify-content: center; gap: .4rem; padding: 0 1rem; flex-wrap: wrap;
+}
+.rslide-dots button {
+  width: .5rem; height: .5rem; border-radius: 9999px; background: rgba(255,255,255,.55);
+  transition: all .35s cubic-bezier(0.16,1,0.3,1);
+}
+.rslide-dots button[aria-current="true"] { width: 1.4rem; background: #fff; }
+
+.rslide-count {
+  position: absolute; right: .75rem; top: .75rem; z-index: 2;
+  border-radius: 9999px; background: rgba(43,71,28,.55); backdrop-filter: blur(10px);
+  padding: .25rem .65rem; font-size: 12px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) { .rslide-track { transition: none; } }
