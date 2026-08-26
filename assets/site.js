@@ -206,6 +206,120 @@
   });
 })();
 
+/* ──────────────────────────────────────────────────────
+   배치도 크게 보기
+   배치도를 누르면 전체 화면으로 열리고,
+   단계별로 확대하거나 끌어서 이동할 수 있습니다.
+────────────────────────────────────────────────────── */
+(function () {
+  const dlg  = document.getElementById('mapDlg');
+  const open = document.getElementById('mapOpen');
+  if (!dlg || !open || !dlg.showModal) return;
+
+  const scroll = document.getElementById('mapScroll');
+  const img    = document.getElementById('mapZoomImg');
+  const pct    = document.getElementById('mapPct');
+
+  const STEPS = [1, 1.6, 2.4, 3.5, 5];   // 배율 단계
+  let zi = 0;
+  let dragged = false;
+
+  // 화면 너비에 딱 맞는 크기 (좌우 여백 p-3 = 12px 씩)
+  function fitWidth() {
+    return Math.max(80, scroll.clientWidth - 24);
+  }
+
+  function setZoom(next, focus) {
+    const oldW = img.offsetWidth || fitWidth();
+    zi = Math.max(0, Math.min(STEPS.length - 1, next));
+
+    const newW = fitWidth() * STEPS[zi];
+    const ratio = newW / oldW;
+    const fx = focus ? focus.x : scroll.clientWidth / 2;
+    const fy = focus ? focus.y : scroll.clientHeight / 2;
+
+    img.style.width = newW + 'px';
+    pct.textContent = Math.round(STEPS[zi] * 100) + '%';
+    scroll.style.cursor = zi >= STEPS.length - 1 ? 'zoom-out' : 'zoom-in';
+
+    // 보고 있던 지점이 그대로 남도록 스크롤 위치를 옮깁니다
+    scroll.scrollLeft = (scroll.scrollLeft + fx) * ratio - fx;
+    scroll.scrollTop  = (scroll.scrollTop  + fy) * ratio - fy;
+  }
+
+  function reset() {
+    zi = 0;
+    img.style.width = fitWidth() + 'px';
+    pct.textContent = '100%';
+    scroll.style.cursor = 'zoom-in';
+    scroll.scrollLeft = 0;
+    scroll.scrollTop  = 0;
+  }
+
+  open.addEventListener('click', () => {
+    dlg.showModal();
+    reset();                       // 창이 열린 뒤라야 실제 너비를 알 수 있습니다
+  });
+
+  dlg.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-map]');
+    if (!btn) return;
+    const act = btn.dataset.map;
+    if (act === 'close') dlg.close();
+    if (act === 'in')    setZoom(zi + 1);
+    if (act === 'out')   setZoom(zi - 1);
+  });
+
+  // 배치도를 누르면 그 지점을 중심으로 한 단계씩 확대
+  img.addEventListener('click', (e) => {
+    if (dragged) { dragged = false; return; }
+    const r = scroll.getBoundingClientRect();
+    setZoom(zi >= STEPS.length - 1 ? 0 : zi + 1, { x: e.clientX - r.left, y: e.clientY - r.top });
+  });
+
+  // 마우스로 끌어서 이동
+  let drag = null;
+  scroll.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;         // 손가락은 기본 스크롤 사용
+    drag = { x: e.clientX, y: e.clientY, l: scroll.scrollLeft, t: scroll.scrollTop };
+    dragged = false;
+    try { scroll.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  scroll.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragged = true;
+    scroll.scrollLeft = drag.l - dx;
+    scroll.scrollTop  = drag.t - dy;
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) =>
+    scroll.addEventListener(ev, () => { drag = null; })
+  );
+
+  // Ctrl + 휠로 확대·축소
+  scroll.addEventListener('wheel', (e) => {
+    if (!e.ctrlKey) return;
+    e.preventDefault();
+    const r = scroll.getBoundingClientRect();
+    setZoom(zi + (e.deltaY < 0 ? 1 : -1), { x: e.clientX - r.left, y: e.clientY - r.top });
+  }, { passive: false });
+
+  // 키보드
+  dlg.addEventListener('keydown', (e) => {
+    if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(zi + 1); }
+    if (e.key === '-' || e.key === '_') { e.preventDefault(); setZoom(zi - 1); }
+    if (e.key === '0')                  { e.preventDefault(); reset(); }
+  });
+
+  // 화면 크기가 바뀌면 다시 맞춥니다
+  let rt;
+  window.addEventListener('resize', () => {
+    if (!dlg.open) return;
+    clearTimeout(rt);
+    rt = setTimeout(() => setZoom(zi), 150);
+  });
+})();
+
 /* 푸터 연도 */
 (function () {
   const y = document.getElementById('year');

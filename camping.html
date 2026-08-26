@@ -758,9 +758,14 @@
                 <h3 class="text-xl font-bold text-leaf-900">너와두리 배치도</h3>
                 <span class="rounded-full bg-leaf-50 px-3 py-1.5 text-[12.5px] font-bold text-leaf-700">충북 옥천군 청성면 거포리 762번지</span>
               </div>
-              <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-leaf-600/12">
+              <p class="mt-2 text-[13.5px] text-stone-500">배치도를 누르면 크게 볼 수 있습니다. 사이트 번호(A·B·C·E·F·G, 카라반 H)를 확인해 보세요.</p>
+              <button type="button" id="mapOpen" class="group relative mt-5 block w-full overflow-hidden rounded-[1.5rem] border border-leaf-600/12">
                 <img src="images/camp-map.jpg" alt="너와두리 캠핑장 종합안내 배치도 — A·B·C·E·F·G 캠핑 구역과 H 카라반 사이트, 축구장, 어린이 물놀이장, 사무실(접수처), 건강관리실, 음식체험장, 주차장, 개수대·화장실·샤워실 위치" width="1800" height="1578" loading="lazy" decoding="async" class="w-full object-contain" />
-              </div>
+                <span class="pointer-events-none absolute inset-0 bg-leaf-900/0 u-ease group-hover:bg-leaf-900/15"></span>
+                <span class="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-leaf-900/70 px-3.5 py-2 text-[12.5px] font-bold text-white backdrop-blur-md u-ease group-hover:bg-persimmon-500">
+                  <iconify-icon icon="solar:magnifer-zoom-in-linear" class="text-base"></iconify-icon>크게 보기
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -841,6 +846,38 @@
       </div>
     </div>
   </footer>
+
+  <!-- ================= 배치도 크게 보기 ================= -->
+  <dialog id="mapDlg" class="h-[100dvh] max-h-none w-screen max-w-none border-0 bg-transparent p-0 backdrop:bg-leaf-900/90">
+    <div class="flex h-[100dvh] w-screen flex-col bg-leaf-900">
+
+      <div class="flex shrink-0 items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <p class="flex items-center gap-2 text-[14.5px] font-bold text-white">
+          <iconify-icon icon="solar:map-linear" class="text-lg text-persimmon-300"></iconify-icon>너와두리 배치도
+        </p>
+        <div class="flex items-center gap-1.5">
+          <button type="button" data-map="out" class="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white u-ease hover:bg-white/20" aria-label="축소">
+            <iconify-icon icon="solar:minus-circle-linear" class="text-xl"></iconify-icon>
+          </button>
+          <span id="mapPct" class="w-14 text-center text-[13px] font-bold tabular-nums text-white/80">100%</span>
+          <button type="button" data-map="in" class="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white u-ease hover:bg-white/20" aria-label="확대">
+            <iconify-icon icon="solar:add-circle-linear" class="text-xl"></iconify-icon>
+          </button>
+          <button type="button" data-map="close" class="ml-1.5 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white u-ease hover:bg-persimmon-500" aria-label="닫기">
+            <iconify-icon icon="solar:close-circle-linear" class="text-xl"></iconify-icon>
+          </button>
+        </div>
+      </div>
+
+      <div id="mapScroll" class="min-h-0 flex-1 cursor-zoom-in overflow-auto p-3">
+        <img id="mapZoomImg" src="images/camp-map.jpg" alt="너와두리 캠핑장 종합안내 배치도" draggable="false" class="mx-auto block max-w-none select-none" />
+      </div>
+
+      <p class="shrink-0 px-4 pb-3 pt-1 text-center text-[12px] text-white/55">
+        배치도를 누르면 단계별로 확대됩니다 · 끌어서 이동 · ESC 로 닫기
+      </p>
+    </div>
+  </dialog>
 
   <script src="assets/site.js"></script>
 </body>
